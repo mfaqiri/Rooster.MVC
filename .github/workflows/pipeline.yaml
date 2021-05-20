@@ -35,9 +35,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: docker image build --file Dockerfile --tag Rooster-MVC .
+      - run: docker image build --file Dockerfile --tag rooster-mvc .
       - run: echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin
-      - run: docker image push Rooster-MVC
+      - run: docker image push rooster-mvc
       - run: docker logout
     
 
