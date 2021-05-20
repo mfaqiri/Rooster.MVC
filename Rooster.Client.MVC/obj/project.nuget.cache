@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sLA/gnYuzu5XYU2Wvfdjbyl51g6to64C68K/3LZ2hGkmYeeVKnxaHKWO7iQYHdmcKRI2uCI/1loWejrQTVzu7A==",
+  "success": true,
+  "projectFilePath": "/home/mfaqiri/revature/rooster/Rooster.MVC/Rooster.Client.MVC/Rooster.Client.MVC.csproj",
+  "expectedPackageFiles": [
+    "/home/mfaqiri/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
