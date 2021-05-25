@@ -48,8 +48,8 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      -uses: azure/webapp-deploy@v2
-       with:
+      - uses: azure/webapp-deploy@v2
+        with:
           app-name: rooster-mvc-app
           images: mfaqiri/rooster-mvc
 
