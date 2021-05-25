@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=./TestCoverage/ -l trx -r ./TestResult/
+      - run: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=../TestCoverage/ -l trx -r ./TestResult/
 
 
 
@@ -24,9 +24,36 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: dotnet tool install -g dotnet-sonarscanner
-      - run: dotnet sonarscanner begin -k:'mfaqiri_Rooster.MVC' -o:'mfaqiri' -d:sonar.login=$SONAR_TOKEN -d:sonar.host.url='https://sonarcloud.io' -d:sonar.cs.vstest.reportPaths=./TestResult/*.trx -d:sonar.cs.opencover.reportsPaths=./TestCoverage/*.xml
+      - run: dotnet sonarscanner begin -k:'mfaqiri_Rooster.MVC' -o:'mfaqiri' -d:sonar.login=$SONAR_TOKEN -d:sonar.host.url='https://sonarcloud.io' -d:sonar.cs.vstest.reportsPaths=./TestResult/*.trx -d:sonar.cs.opencover.reportsPaths=./TestCoverage/*.xml
       - run: dotnet build
       - run: dotnet sonarscanner end -d:sonar.login=$SONAR_TOKEN
+
+  docker:
+    env:
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+    needs:
+      - analyze
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker image build --file Dockerfile --tag mfaqiri/rooster-mvc .
+      - run: echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin
+      - run: docker image push mfaqiri/rooster-mvc
+      - run: docker logout
+
+  deploy:
+    needs:
+      - docker
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      -uses: azure/webapp-deploy@v2
+       with:
+          app-name: rooster-mvc-app
+          images: mfaqiri/rooster-mvc
 
 name: ci-pipeline
 on: push
