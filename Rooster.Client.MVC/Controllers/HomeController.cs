@@ -22,13 +22,12 @@ namespace Rooster.Client.MVC.Controllers
     [HttpGet]
     public IActionResult Index()
     {
-      _webapiSingleton.getResponse();
-      if(_webapiSingleton.isConnected)
-      {
-        
-        ViewBag.Errands = _webapiSingleton.result;
+      
+      var result = _webapiSingleton.Factory();
+
+      if(result != null)
         return View("index");
-      }
+      
 
       return View("ConnectionError");
     }

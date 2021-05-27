@@ -10,8 +10,8 @@ namespace Rooster.Client.MVC.Singletons
     private static WebapiSingleton _instance;
     private readonly HttpClient _client;
     private static IConfiguration _configuration;
-    public bool isConnected = false;
-    public List<string> result = new List<string>();
+    private bool isConnected = false;
+    private List<string> result;
 
     public static WebapiSingleton Instance(IConfiguration configuration)
     {
@@ -23,6 +23,16 @@ namespace Rooster.Client.MVC.Singletons
       }
 
       return _instance;
+    }
+
+    public List<string> Factory()
+    {
+      getResponse();
+      if(isConnected)
+      {
+        return result;
+      }
+      return null;
     }
 
     public void getResponse()
