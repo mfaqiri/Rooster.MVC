@@ -1,8 +1,23 @@
-﻿@{
+﻿@model Rooster.Client.MVC.Models.ScheduleViewModel;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2>To-Do List</h2>
+    <p></p>
 </div>
+<form action="/Schedule" method="post">
+    <fieldset>
+        <legend>New Task</legend>
+        <div class="form-input">
+            <label class="form-input-label" for="email">Email Address:</label>
+            <input class="form-input-input" asp-for="useremail" type="text"><br>
+            <label class="form-input-label" for="password">Password:</label>
+            <input class="form-input-input" type="password"><br>
+        </div>
+    </fieldset>
+    <button type="submit">Login</button>
+</form>

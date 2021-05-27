@@ -1,0 +1,31 @@
+@model Rooster.Client.MVC.Models.ScheduleViewModel;
+
+@{
+  ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+  <h1 class="display-4">Welcome</h1>
+  <h2>To-Do List</h2>
+  <p></p>
+</div>
+<form action="/newErrand" method="post">
+  @Html.AntiForgeryToken()
+
+  <fieldset>
+    <legend>New Task</legend>
+    @Html.ValidationMessageFor(m => m.Name)
+    <div class="form-input">
+      <label class="form-input-label" for="Name">Task Name:</label>
+      <input class="form-input-input" type="text" asp-for="Name"><br>
+      <label class="form-input-label" for="Date">Date:</label>
+      <input class="form-input-input" type="date">
+      <input class="form-input-input" type="time"><br>
+      <label class="form-input-label" for="Duration">Duration in minutes:</label>
+      <input class="form-input-input" type="number"><br>
+      <label class="form-input-label" for="Description">Description:</label>
+      <input class="form-input-input" type="text"><br>
+    </div>
+  </fieldset>
+  <button type="submit">Submit Task</button>
+</form>
