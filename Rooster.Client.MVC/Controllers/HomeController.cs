@@ -24,6 +24,7 @@ namespace Rooster.Client.MVC.Controllers
       return View("index");
     }
 
+
     public IActionResult Privacy()
     {
       return View();

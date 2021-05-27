@@ -9,22 +9,25 @@
   <h2>To-Do List</h2>
   <p></p>
 </div>
-<form action="/newErrand" method="post">
+<form method="post">
   @Html.AntiForgeryToken()
 
   <fieldset>
     <legend>New Task</legend>
     @Html.ValidationMessageFor(m => m.Name)
+    @Html.ValidationMessageFor(a => a.Appointment)
+    @Html.ValidationMessageFor(d => d.Duration)
+    @Html.ValidationMessageFor(D => D.Description)
     <div class="form-input">
+      <label class="form-input-label" asp-for="useremail">@Model.useremail</label><br>
       <label class="form-input-label" for="Name">Task Name:</label>
       <input class="form-input-input" type="text" asp-for="Name"><br>
       <label class="form-input-label" for="Date">Date:</label>
-      <input class="form-input-input" type="date">
-      <input class="form-input-input" type="time"><br>
+      <input class="form-input-input" type="date" asp-for="Appointment"><br>
       <label class="form-input-label" for="Duration">Duration in minutes:</label>
-      <input class="form-input-input" type="number"><br>
+      <input class="form-input-input" type="number" asp-for="Duration"><br>
       <label class="form-input-label" for="Description">Description:</label>
-      <input class="form-input-input" type="text"><br>
+      <input class="form-input-input" type="text" asp-for="Description"><br>
     </div>
   </fieldset>
   <button type="submit">Submit Task</button>

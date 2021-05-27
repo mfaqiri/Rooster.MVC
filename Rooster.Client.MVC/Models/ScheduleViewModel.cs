@@ -4,7 +4,7 @@ using System;
 
 namespace Rooster.Client.MVC.Models
 {
-  public class ScheduleViewModel : IValidatableObject
+  public class ScheduleViewModel
   {
     public List<Errand> Schedule { get; set; }
     public string useremail { get; set; }
@@ -13,7 +13,6 @@ namespace Rooster.Client.MVC.Models
     public string Name { get; set; }
 
     [Required(ErrorMessage = "Date Error")]
-    [DataType(DataType.Text)]
     public DateTime Appointment { get; set; }
 
     [Required(ErrorMessage = "Duration Error")]
@@ -21,14 +20,11 @@ namespace Rooster.Client.MVC.Models
 
     [Required(ErrorMessage = "Description Error")]
     public string Description { get; set; }
+
+
     public void Load(UnitOfWork unitOfWork)
     {
 
-    }
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-      if (Description == "")
-        yield return new ValidationResult("Enter a description of the event");
     }
   }
 }
