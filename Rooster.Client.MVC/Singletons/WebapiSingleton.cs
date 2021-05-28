@@ -45,12 +45,12 @@ namespace Rooster.Client.MVC.Singletons
 
     private bool getStatus(string check)
     {
-      check = "http://rooster-webapi-app.azurewebsites.net/";
+      check = "http://rooster-webapi-app.azurewebsites.net/user";
       var response = _instance._client.GetAsync(check).GetAwaiter().GetResult();
       if (response.IsSuccessStatusCode)
       {
         isConnected = true;
-        result = JsonConvert.DeserializeContent<List<string>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+        result = JsonSerializer.Deserialize<List<string>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
       }
       else
       {
