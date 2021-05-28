@@ -24,13 +24,13 @@ namespace Rooster.Client.MVC.Controllers
     public IActionResult Index()
     {
 
-      //List<string> result = _webapiSingleton.Factory();
+      var result = _webapiSingleton.Factory();
 
       //if (result != null)
       return View("index");
 
 
-      return View("ConnectionError");
+      //return View("ConnectionError");
     }
   }
 }
