@@ -22,8 +22,6 @@ namespace Rooster.Client.MVC.Controllers
     [HttpPost]
     public IActionResult Create(ScheduleViewModel schedule)
     {
-      System.Console.WriteLine(schedule.useremail);
-      System.Console.WriteLine(schedule.Appointment);
 
       return View("Schedule", schedule);
     }

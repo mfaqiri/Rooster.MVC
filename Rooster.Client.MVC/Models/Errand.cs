@@ -4,7 +4,6 @@ namespace Rooster.Client.MVC.Models
 {
   public class Errand
   {
-    public string Name { get; set; }
     public DateTime EventStart { get; private set; }
     public DateTime EventEnd { get; private set; }
     public TimeSpan Duration { get; private set; }

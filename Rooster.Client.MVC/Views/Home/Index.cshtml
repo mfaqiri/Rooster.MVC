@@ -20,4 +20,11 @@
         </div>
     </fieldset>
     <button type="submit">Login</button>
+    @foreach (var item in result)
+    {
+        <div>
+            <input class="form-check-input" type="checkbox" value="@item">
+            <label class="form-check-label" for="@item">@item</label>
+        </div>
+    }
 </form>
