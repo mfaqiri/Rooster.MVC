@@ -1,8 +1,5 @@
 @model Rooster.Client.MVC.Models.ScheduleViewModel;
 
-@{
-  ViewData["Title"] = "Home Page";
-}
 
 <div class="text-center">
   <h1 class="display-4">Welcome</h1>
@@ -10,7 +7,6 @@
   <p></p>
 </div>
 <form method="post">
-  @Html.AntiForgeryToken()
 
   <fieldset>
     <legend>New Task</legend>
@@ -32,15 +28,3 @@
   </fieldset>
   <button type="submit">Submit Task</button>
 </form>
-
-<fieldset>
-  <legend>To-Do List</legend>
-
-  @foreach (var item in Model.Schedule)
-  {
-    <div>
-      <input class="form-check-input" type="checkbox" value="@item">
-      <label class="form-check-label" for="@item">@item</label>
-    </div>
-  }
-</fieldset>
