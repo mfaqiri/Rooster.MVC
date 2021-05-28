@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Rooster.Client.MVC.Singletons
 {
+  //
   public class WebapiSingleton
   {
     private static WebapiSingleton _instance;
