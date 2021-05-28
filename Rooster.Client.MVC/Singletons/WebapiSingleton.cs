@@ -38,7 +38,7 @@ namespace Rooster.Client.MVC.Singletons
 
     public void getResponse()
     {
-      var connection = _configuration.GetConnectionString("webapi");
+      var connection = _configuration.GetConnectionString("http://rooster-webapi-app.azurewebsites.net");
 
       getStatus(connection);
     }
