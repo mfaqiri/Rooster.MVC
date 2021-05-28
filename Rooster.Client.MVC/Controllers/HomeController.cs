@@ -3,8 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Rooster.Client.MVC.Singletons;
-using System.Net.Http;
-using System.Text.Json;
+
 
 namespace Rooster.Client.MVC.Controllers
 {
@@ -24,18 +23,14 @@ namespace Rooster.Client.MVC.Controllers
     [HttpGet]
     public IActionResult Index()
     {
-      var client = new HttpClient();
-      var response = client.GetAsync(_configuration["Services:webapi"]).GetAwaiter().GetResult();
-      List<string> result = null;
-      result = JsonSerializer.Deserialize<List<string>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
 
-      //var result = _webapiSingleton.Factory();
+      var result = _webapiSingleton.Factory();
 
-      //if (result != null)
-      return View("index");
+      if (result != null)
+        return View("index");
 
 
-      //return View("ConnectionError");
+      return View("ConnectionError");
     }
   }
 }
