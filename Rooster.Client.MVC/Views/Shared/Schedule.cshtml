@@ -32,3 +32,15 @@
   </fieldset>
   <button type="submit">Submit Task</button>
 </form>
+
+<fieldset>
+  <legend>To-Do List</legend>
+
+  @foreach (var item in Model.Schedule)
+  {
+    <div>
+      <input class="form-check-input" type="checkbox" value="@item">
+      <label class="form-check-label" for="@item">@item</label>
+    </div>
+  }
+</fieldset>

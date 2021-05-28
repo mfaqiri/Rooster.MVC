@@ -11,5 +11,11 @@ namespace Rooster.Client.MVC.Models
     public bool Completion { get; private set; }
     public int userId { get; set; }
     public string Descr { get; set; }
+
+
+    public override string ToString()
+    {
+      return $"{Descr}";
+    }
   }
 }

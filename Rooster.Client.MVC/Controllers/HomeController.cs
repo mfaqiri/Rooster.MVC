@@ -1,39 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Rooster.Client.MVC.Models;
+using Rooster.Client.MVC.Singletons;
 
 namespace Rooster.Client.MVC.Controllers
 {
   [Route("[controller]")]
+  [EnableCors("public")]
   public class HomeController : Controller
   {
-    private readonly ILogger<HomeController> _logger;
+    private readonly WebapiSingleton _webapiSingleton;
+    private IConfiguration _configuration;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IConfiguration configuration)
     {
-      _logger = logger;
+      _configuration = configuration;
+      _webapiSingleton = WebapiSingleton.Instance(_configuration);
     }
+
     [HttpGet]
     public IActionResult Index()
     {
-      return View("index");
-    }
+
+      var result = _webapiSingleton.Factory();
+
+      if (result != null)
+        return View("index");
 
 
-    public IActionResult Privacy()
-    {
-      return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-      return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+      return View("ConnectionError");
     }
   }
 }
