@@ -22,6 +22,10 @@ namespace Rooster.Client.MVC.Controllers
     [HttpGet]
     public IActionResult Index()
     {
+      var client = new HttpClient();
+      var response = client.GetAsync(_configuration["Services:webapi"]).GetAwaiter().GetResult();
+      List<string> result = null;
+      result = JsonSerializer.Deserialize<List<string>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
 
       //var result = _webapiSingleton.Factory();
 
@@ -29,7 +33,7 @@ namespace Rooster.Client.MVC.Controllers
       return View("index");
 
 
-      return View("ConnectionError");
+      //return View("ConnectionError");
     }
   }
 }
