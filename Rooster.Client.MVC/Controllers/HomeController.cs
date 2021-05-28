@@ -24,7 +24,7 @@ namespace Rooster.Client.MVC.Controllers
     public IActionResult Index()
     {
 
-      var result = _webapiSingleton.Factory();
+      List<string> result = _webapiSingleton.Factory();
 
       if (result != null)
         return View("index");
