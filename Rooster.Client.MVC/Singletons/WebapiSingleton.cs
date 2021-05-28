@@ -45,7 +45,7 @@ namespace Rooster.Client.MVC.Singletons
 
     private bool getStatus(string check)
     {
-      check = "http://rooster-webapi-app.azurewebsites.net/user";
+      check = "http://rooster-webapi-app.azurewebsites.net/errand/johndoe@example.com";
       var response = _instance._client.GetAsync(check).GetAwaiter().GetResult();
       if (response.IsSuccessStatusCode)
       {
