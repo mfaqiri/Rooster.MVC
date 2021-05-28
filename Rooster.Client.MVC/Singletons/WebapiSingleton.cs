@@ -50,7 +50,7 @@ namespace Rooster.Client.MVC.Singletons
       if (response.IsSuccessStatusCode)
       {
         isConnected = true;
-        result = JsonSerializer.Deserialize<List<string>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+        result = JsonConvert.DeserializeContent<List<string>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
       }
       else
       {
