@@ -18,6 +18,7 @@ namespace Rooster.Client.MVC.Controllers
     {
       _configuration = configuration;
       _webapiSingleton = WebapiSingleton.Instance(_configuration);
+
     }
 
     [HttpGet]
